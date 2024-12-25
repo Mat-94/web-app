@@ -8,7 +8,6 @@
     <version>3.1.2-SNAPSHOT</version>
 
     <name>maven-web-application</name>
-
     <description>Maven Web Project for Java Project</description>
 
     <organization>
@@ -140,24 +139,33 @@
                 </configuration>
             </plugin>
 
+            <!-- Sonar Maven Plugin with Bypass Module -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>sonar</goal>
+                        </goals>
+                        <configuration>
+                            <!-- JVM arguments to bypass module restrictions -->
+                            <javaOpts>
+                                <arg>-Dsonar.java.binaries=target/classes</arg>
+                                <arg>-Dsonar.java.source=17</arg>
+                                <arg>-DargLine="--add-opens java.base/java.lang=ALL-UNNAMED"</arg>
+                            </javaOpts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Add maven-war-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version> <!-- Updated version -->
-            </plugin>
-
-            <!-- Add SonarQube plugin -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>4.0.0.4121</version>
-                <configuration>
-                    <javaOpts>
-                        <arg>-Dsonar.java.binaries=target/classes</arg>
-                        <arg>-Dsonar.java.source=17</arg>
-                    </javaOpts>
-                </configuration>
             </plugin>
         </plugins>
     </build>
