@@ -28,55 +28,48 @@
     </properties>
 
     <dependencies>
-        <!-- Your dependencies here -->
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring Web and Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+
+        <!-- JSON Library -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
+        <!-- Your other dependencies -->
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>JOMACS Releases Nexus Repository</name>
-            <url>http://172.31.54.85:8081/repository/gtb-app-release/</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>JOMACS Snapshot Nexus Repository</name>
-            <url>http://172.31.54.85:8081/repository/gtb-app-snapshot/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <finalName>web-app</finalName>
-
         <plugins>
-            <!-- Other plugins -->
-
-            <!-- Sonar Maven Plugin with Bypass Module Configuration -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>4.0.0.4121</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>sonar</goal>
-                        </goals>
-                        <configuration>
-                            <!-- Add the necessary JVM argument to bypass module access restrictions -->
-                            <javaOpts>
-                                <arg>-Dsonar.java.binaries=target/classes</arg>
-                                <arg>-Dsonar.java.source=17</arg>
-                                <arg>-Dsonar.java.target=17</arg>
-                                <arg>-Dsonar.java.jdkHome=${env.JDK_HOME}</arg>
-                                <arg>-Dsonar.verbose=true</arg>
-                                <arg>--add-opens java.base/java.lang=ALL-UNNAMED</arg> <!-- JVM arg for bypassing module system -->
-                            </javaOpts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Add other plugins here -->
+            <!-- Add your plugins here -->
         </plugins>
     </build>
 </project>
+
