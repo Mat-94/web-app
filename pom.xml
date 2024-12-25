@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -74,7 +73,11 @@
             <properties>
                 <!-- JVM options for SonarQube Plugin -->
                 <sonar.java.additionalArgs>--add-opens java.base/java.lang=ALL-UNNAMED</sonar.java.additionalArgs>
+
+                <!-- Update SonarQube server URL to your EC2 SonarQube IP -->
+                <sonar.host.url>http://18.221.207.24:9000</sonar.host.url>
             </properties>
         </profile>
     </profiles>
 </project>
+
