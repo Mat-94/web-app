@@ -1,38 +1,44 @@
-<properties>
-    <jdk.version>17</jdk.version> <!-- Updated for Java 17 -->
-    <spring.version>5.3.36</spring.version>
-    <junit.version>4.13.2</junit.version>
-    <log4j.version>1.2.17</log4j.version>
-    <sonar.host.url>http://18.223.155.84:9000</sonar.host.url>
-    <sonar.login>admin</sonar.login>
-    <sonar.password>admin</sonar.password>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-</properties>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>
-            <configuration>
-                <source>${jdk.version}</source>
-                <target>${jdk.version}</target>
-            </configuration>
-        </plugin>
+    <modelVersion>4.0.0</modelVersion>
 
-        <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>4.0.0.4121</version> <!-- Updated version -->
-            <configuration>
-                <javaOpts>
-                    <arg>-Dsonar.java.binaries=target/classes</arg>
-                    <arg>-Dsonar.java.source=17</arg>
-                    <arg>-Dsonar.java.jdkHome=/path/to/java/17</arg> <!-- Make sure to specify Java 17 path -->
-                </javaOpts>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
+    <groupId>com.mt</groupId>
+    <artifactId>maven-web-application</artifactId>
+    <packaging>war</packaging>
+    <version>3.1.2-SNAPSHOT</version>
+
+    <name>maven-web-application</name>
+    <description>Maven Web Project for Java Project</description>
+
+    <organization>
+        <name>JOMACS IT SOLUTIONS</name>
+        <url>http://jomacsit.com/</url>
+    </organization>
+
+    <!-- Properties should be inside the <project> element -->
+    <properties>
+        <jdk.version>17</jdk.version> <!-- Use the correct JDK version -->
+        <spring.version>5.3.36</spring.version>
+        <junit.version>4.13.2</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <sonar.host.url>http://18.223.155.84:9000</sonar.host.url>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>admin</sonar.password>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <!-- Add dependencies, build plugins, etc. here, as you already have in your pom.xml -->
+    <dependencies>
+        <!-- your dependencies here -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- your plugins here -->
+        </plugins>
+    </build>
+</project>
