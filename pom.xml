@@ -146,6 +146,19 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version> <!-- Updated version -->
             </plugin>
+
+            <!-- Add SonarQube plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version>
+                <configuration>
+                    <javaOpts>
+                        <arg>-Dsonar.java.binaries=target/classes</arg>
+                        <arg>-Dsonar.java.source=17</arg>
+                    </javaOpts>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
