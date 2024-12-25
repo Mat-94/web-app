@@ -14,18 +14,28 @@
     </properties>
 
     <dependencies>
-        <!-- Add necessary dependencies here -->
-        <!-- Example dependencies for Spring and JSON libraries -->
+        <!-- Spring Web Dependency -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>5.3.9</version>
         </dependency>
+
+        <!-- JSON Library Dependency -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
+
+        <!-- Servlet API for javax.servlet packages (used by HttpServletRequest, HttpServletResponse, etc.) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope> <!-- Provided because it's typically available in the servlet container (e.g., Tomcat) -->
+        </dependency>
+
         <!-- Add more dependencies as needed -->
     </dependencies>
 
