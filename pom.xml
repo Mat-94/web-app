@@ -9,52 +9,26 @@
     
     <name>maven-web-application</name>
     <description>Maven Web Project for Java Project</description>
-    
+
     <organization>
         <name>JOMACS IT SOLUTIONS</name>
         <url>http://jomacsit.com/</url>
     </organization>
 
     <properties>
-        <jdk.version>11</jdk.version>
-        <target.jdk.version>11</target.jdk.version>
-        <spring.version>5.3.27</spring.version>
-        <junit.version>4.13.2</junit.version>
-        <log4j.version>2.20.0</log4j.version>
+        <jdk.version>1.8</jdk.version>
+        <spring.version>5.1.2.RELEASE</spring.version>
+        <junit.version>4.11</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <sonar.host.url>http://13.49.0.39:9000</sonar.host.url>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>admin1</sonar.password>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20231013</version>
-        </dependency>
-        
-        <!-- test dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>4.11.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- compile dependencies -->
+        <!-- Core Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -75,39 +49,85 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Utility Dependency -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160212</version>
+        </dependency>
+
+        <!-- Testing Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-    
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>JOMACS Releases Nexus Repository</name>
+            <url>http://3.89.110.92:8081/repository/jomac-webapp/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>JOMACS Snapshot Nexus Repository</name>
+            <url>http://51.20.92.224:8081/repository/jomacs-webapp/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <finalName>web-app</finalName>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.3</version>
                 <configuration>
                     <source>${jdk.version}</source>
-                    <target>${target.jdk.version}</target>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.11.v20150529</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/maven-web-application</contextPath>
+                    </webApp>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.2</version>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
                 <configuration>
-                    <warName>maven-web-application</warName>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.1</version>
-                <configuration>
-                    <url>http://52.14.178.67:8080/manager/text</url>
-                    <server>TomcatServer</server>
-                    <path>/maven-web-application</path>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>2.0</wtpversion>
+                    <wtpContextName>maven-web-application</wtpContextName>
                 </configuration>
             </plugin>
         </plugins>
