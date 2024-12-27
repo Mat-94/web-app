@@ -1,32 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <groupId>com.mt</groupId>
     <artifactId>maven-web-application</artifactId>
     <packaging>war</packaging>
     <version>3.0.6-RELEASE</version>
-
+    
     <name>maven-web-application</name>
     <description>Maven Web Project for Java Project</description>
-
+    
     <organization>
         <name>JOMACS IT SOLUTIONS</name>
         <url>http://jomacsit.com/</url>
     </organization>
 
     <properties>
-        <!-- Set the Java version to 11 for the entire project -->
         <jdk.version>11</jdk.version>
         <target.jdk.version>11</target.jdk.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <spring.version>5.3.27</spring.version>
         <junit.version>4.13.2</junit.version>
         <log4j.version>2.20.0</log4j.version>
-        <sonar.host.url>http://52.14.178.67:9000</sonar.host.url>
-        <sonar.login>admin</sonar.login>
-        <sonar.password>admin</sonar.password>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -37,8 +31,8 @@
             <artifactId>json</artifactId>
             <version>20231013</version>
         </dependency>
-
-        <!-- Test dependencies -->
+        
+        <!-- test dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -60,7 +54,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Compile dependencies -->
+        <!-- compile dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -82,21 +76,7 @@
             <version>${spring.version}</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>JOMACS Releases Nexus Repository</name>
-            <url>http://3.89.110.92:8081/repository/jomac-webapp/</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>JOMACS Snapshot Nexus Repository</name>
-            <url>http://51.20.92.224:8081/repository/jomacs-webapp/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
+    
     <build>
         <finalName>web-app</finalName>
         <plugins>
@@ -121,6 +101,19 @@
                     </webApp>
                 </configuration>
             </plugin>
+
+            <!-- Add maven-war-plugin for deploying to Tomcat -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <warName>maven-web-application</warName>
+                    <!-- Optional: Configure the context path for Tomcat -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>
